@@ -11,7 +11,7 @@ YOUTUBE_API_VERSION = "v3"
 # Database connection setup
 def create_connection():
     try:
-        # Connect to MySQL server without specifying the database
+        # Connecting to MySQL server 
         connection = pymysql.connect(
             host="localhost",
             user="root",
@@ -19,12 +19,12 @@ def create_connection():
         )
         cursor = connection.cursor()
 
-        # Create the database if it doesn't exist
+        # Creating the database if it doesn't exist
         cursor.execute("CREATE DATABASE IF NOT EXISTS youtube_db;")
         cursor.close()
         connection.close()
 
-        # Connect to the specific database
+        # Connecting to the specific database
         connection = pymysql.connect(
             host="localhost",
             user="root",
@@ -44,7 +44,7 @@ def create_tables():
 
     cursor = connection.cursor()
 
-    # Create Channels table
+    # Creating Channels table
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS Channels (
         channel_id VARCHAR(255) PRIMARY KEY,
@@ -55,7 +55,7 @@ def create_tables():
     )
     """)
 
-    # Create Videos table
+    # Creating Videos table
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS Videos (
         video_id VARCHAR(255) PRIMARY KEY,
@@ -192,7 +192,7 @@ def main():
     # Initialize YouTube API client
     youtube = build(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION, developerKey=API_KEY)
 
-    # Create tables if they don't exist
+    # Creating tables if they don't exist
     create_tables()
 
     # User input for channel ID
